@@ -1,0 +1,47 @@
+.camera-box {
+  position: relative;
+  .line-box {
+    position: absolute;
+    .result-box {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      .result-box-item {
+        position: absolute;
+        border: 1px solid red;
+        color: red;
+      }
+    }
+  }
+  .barrage-box{
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    background-repeat: no-repeat;
+    overflow: hidden;
+    .barrage-stream{
+      display: flex;
+      flex-wrap: wrap;
+      color: #fff;
+      position: relative;
+      
+      &-item{
+        position: absolute;
+        margin-right: 30px;
+        animation: barrage 5s linear;
+        width: 100px;
+      }
+    }
+  }
+}
+
+@keyframes barrage {
+  0%{
+    right: -100%;
+  }
+  100%{
+    right: 200%;
+  }
+}
