@@ -10,7 +10,7 @@ onmessage = async function (e) {
 
   for (let img of imageList) {
     // @ts-ignore
-    const offscreen = new OffscreenCanvas(100, 100);
+    const offscreen: any = new OffscreenCanvas(100, 100);
     const ctx = offscreen.getContext('2d');
     const imgData = await createImageBitmap(img);
     offscreen.width = imgData.width;
