@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { startDetectFrame, setAttributes } from './helper';
+import { startDetectFrame, setAttributes, loadModel } from './helper';
 import { Button } from 'antd';
 import './index.less';
 import TestVideo from './test.mp4';
@@ -32,6 +32,9 @@ export default function Barrage() {
   const videoRef = useRef<HTMLVideoElement>();
   const timerRef = useRef(null);
   const barrageStreamRef = useRef(null);
+  const modelRef = useRef(null)
+
+  const [loading, setLoading] = useState(false)
   const [visable, setVisabel] = useState(false);
   const [borderList, setBorderList] = useState([]);
   const [boxData, setBoxData] = useState({
@@ -54,20 +57,34 @@ export default function Barrage() {
     setBarrageStream([...list]);
   };
 
+  // 初始化
+  const init = async () => {
+    setLoading(true)
+    // 加载模型
+    modelRef.current = await loadModel()
+    setLoading(false)
+  }
+
+  useEffect(()=>{
+    init()
+  }, [])
+
   useEffect(() => {
     if (visable) {
       setTimeout(() => {
-        startDetectFrame(videoRef?.current, updateBorderList);
+        startDetectFrame(modelRef.current, videoRef?.current,  updateBorderList);
       }, 2000);
     }
   }, [visable]);
 
   const handleStart = () => {
+    if(loading){
+      return
+    }
     setVisabel(true);
   };
 
   const updateBorderList = (e) => {
-    console.log(e);
     const list = e.map((item) => {
       const { position } = item;
       return {
@@ -76,7 +93,6 @@ export default function Barrage() {
       };
     });
     const svg = createSvg(list);
-    console.log(svg);
     setBarrageMask(svg);
     // setBorderList(e);
   };
@@ -197,7 +213,7 @@ export default function Barrage() {
 
   return (
     <div>
-      <Button onClick={handleStart}>开始</Button>
+      <Button onClick={handleStart}>{loading ? "加载中...":"开始"}</Button>
       {visable && (
         <div className='camera-box'>
           <video

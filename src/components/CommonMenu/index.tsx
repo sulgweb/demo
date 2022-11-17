@@ -30,6 +30,10 @@ export default function CommonMenu() {
       label: '懒加载（intersectionObserver）',
       key: '/lazy-intersection-observer',
     },
+    {
+      label: 'AI-LOL防弹弹幕',
+      key: '/barrage',
+    },
   ];
 
   const handleSelect = (e) => {

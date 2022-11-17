@@ -6,7 +6,6 @@
  * @LastEditTime: 2022-08-19 21:32:07
  */
 var tf = window.tf; // 声明tf
-console.log(tf);
 
 // 设置多个Attrbute
 export function setAttributes(element, attributes) {
@@ -71,22 +70,16 @@ async function detectFrame(video, model, callback) {
       input.dispose(); // 清除输入tensor
       // 读取下一帧
       detectFrame(video, model, callback); // 递归
-    }, 300);
-
-    // requestAnimationFrame(() => {
-    //   tf.dispose(res); // 清除预测tensor
-    //   input.dispose(); // 清除输入tensor
-    //   // 读取下一帧
-    //   detectFrame(video, model, callback); // 递归
-    // });
+    }, 50);
   });
 }
 
-const startDetectFrame = async (dom, callback) => {
-  console.log(weights);
-  const modelRes = await tf.loadGraphModel(weights);
-  console.log(modelRes);
-  detectFrame(dom, modelRes, callback);
+const startDetectFrame = async (model, dom, callback) => {
+  detectFrame(dom, model, callback);
 };
 
-export { startDetectFrame };
+const loadModel = async () => {
+  return await tf.loadGraphModel(weights);
+}
+
+export { startDetectFrame, loadModel };
