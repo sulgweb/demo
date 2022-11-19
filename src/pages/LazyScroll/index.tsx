@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { imageList } from '@/utils/imageList';
-import useImageLazyScroll from './useImageLazyScroll';
 import './index.less';
 
+const loadingPath = location.href + '/images/loading.gif';
 export default function LazyScroll() {
   const domRef = useRef([]);
   const lazyScrollRef = useRef<HTMLDivElement>(null);
@@ -10,7 +10,11 @@ export default function LazyScroll() {
   useEffect(() => {
     getTop();
     lazyScrollRef.current.addEventListener('scroll', getTop);
-    return () => lazyScrollRef.current.removeEventListener('scroll', getTop);
+    return () => {
+      if (lazyScrollRef.current) {
+        lazyScrollRef.current.removeEventListener('scroll', getTop);
+      }
+    };
   }, []);
 
   const getTop = () => {
@@ -22,7 +26,9 @@ export default function LazyScroll() {
       let { top } = domRef.current[i].getBoundingClientRect();
       // 当图片减去可视区域高度小于等于0的时候，将data-src的值赋值给src
       if (top - clientHeight <= 0) {
-        domRef.current[i].src = domRef.current[i].dataset.src;
+        if (domRef.current[i].src === loadingPath) {
+          domRef.current[i].src = domRef.current[i].dataset.src;
+        }
       }
     }
   };
@@ -34,7 +40,7 @@ export default function LazyScroll() {
           key={item}
           ref={(e) => (domRef.current[index] = e)}
           data-src={item}
-          src='/images/loading.gif'
+          src={loadingPath}
         />
       ))}
     </div>

@@ -5,7 +5,7 @@
  * @LastEditors: xiaoyu
  * @LastEditTime: 2022-06-21 23:54:28
  */
-import React, { lazy } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { useRoutes, Navigate } from 'react-router-dom';
 
 const Excel = lazy(() => import('@/pages/Excel'));
@@ -56,5 +56,5 @@ export default function Router() {
     },
   ]);
 
-  return element;
+  return <Suspense fallback={<div>loading...</div>}>{element}</Suspense>;
 }
