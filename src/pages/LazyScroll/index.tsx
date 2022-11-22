@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { imageList } from '@/utils/imageList';
 import './index.less';
 
-const loadingPath = location.href + '/images/loading.gif';
+const loadingPath = location.origin + '/images/loading.gif';
 export default function LazyScroll() {
   const domRef = useRef([]);
   const lazyScrollRef = useRef<HTMLDivElement>(null);
