@@ -30,10 +30,14 @@ export default function CommonMenu() {
       label: '懒加载（intersectionObserver）',
       key: '/lazy-intersection-observer',
     },
-    {
+    { label: '模块懒加载', key: '/lazy-module' },
+    { label: '普通列表', key: '/ordinary-list' },
+    { label: '定高虚拟列表', key: '/limit-virtual-list' },
+    { label: '不定高虚拟列表', key: '/not-limit-virtual-list' },
+    /*{
       label: 'AI-LOL防弹弹幕',
       key: '/barrage',
-    },
+    },*/
   ];
 
   const handleSelect = (e) => {

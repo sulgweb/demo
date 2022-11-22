@@ -15,7 +15,11 @@ const LazyIntersectionObserver = lazy(
   () => import('@/pages/LazyIntersectionObserver'),
 );
 const LazyScroll = lazy(() => import('@/pages/LazyScroll'));
+const LazyModule = lazy(() => import('@/pages/LazyModule'));
 const Barrage = lazy(() => import('@/pages/Barrage'));
+const OrdinaryList = lazy(() => import('@/pages/OrdinaryList'));
+const LimitVirtualList = lazy(() => import('@/pages/LimitVirtualList'));
+const NotLimitVirtualList = lazy(() => import('@/pages/NotLimitVirtualList'));
 
 export default function Router() {
   let element = useRoutes([
@@ -47,6 +51,26 @@ export default function Router() {
     {
       path: '/lazy-scroll',
       element: <LazyScroll />,
+      children: [],
+    },
+    {
+      path: '/lazy-module',
+      element: <LazyModule />,
+      children: [],
+    },
+    {
+      path: '/ordinary-list',
+      element: <OrdinaryList />,
+      children: [],
+    },
+    {
+      path: '/limit-virtual-list',
+      element: <LimitVirtualList />,
+      children: [],
+    },
+    {
+      path: '/not-limit-virtual-list',
+      element: <NotLimitVirtualList />,
       children: [],
     },
     {
