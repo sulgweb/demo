@@ -118,7 +118,14 @@ export default function Excel() {
       <Button onClick={mainExportExcel}>导出全部</Button>
       <Button onClick={workerExportExcel}>worker导出全部</Button>
       <span>{showTime}</span>
-      <Table dataSource={dataSource} columns={columns} />
+      <Table
+        dataSource={dataSource}
+        columns={columns}
+        pagination={{
+          position: ['bottomLeft'],
+          showSizeChanger: false,
+        }}
+      />
     </div>
   );
 }

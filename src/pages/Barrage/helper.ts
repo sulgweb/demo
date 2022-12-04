@@ -5,7 +5,8 @@
  * @Date: 2022-08-19 21:30:37
  * @LastEditTime: 2022-08-19 21:32:07
  */
-var tf = window.tf; // 声明tf
+// var tf = window.tf; // 声明tf
+import * as tf from '@tensorflow/tfjs';
 
 // 设置多个Attrbute
 export function setAttributes(element, attributes) {
@@ -61,6 +62,8 @@ async function detectFrame(video, model, callback) {
       .expandDims(0),
   );
 
+  const startTime = new Date();
+
   // 执行异步函数
   await model.executeAsync(input).then((res) => {
     renderPredictions(res, callback); // 画框
@@ -70,8 +73,11 @@ async function detectFrame(video, model, callback) {
       input.dispose(); // 清除输入tensor
       // 读取下一帧
       detectFrame(video, model, callback); // 递归
-    }, 50);
+    });
   });
+
+  const endTime = new Date();
+  console.log(endTime.getTime() - startTime.getTime() + 'ms');
 }
 
 const startDetectFrame = async (model, dom, callback) => {
@@ -80,6 +86,6 @@ const startDetectFrame = async (model, dom, callback) => {
 
 const loadModel = async () => {
   return await tf.loadGraphModel(weights);
-}
+};
 
 export { startDetectFrame, loadModel };

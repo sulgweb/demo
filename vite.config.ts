@@ -7,18 +7,40 @@
  */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import viteCompression from 'vite-plugin-compression';
+import vitePluginImp from 'vite-plugin-imp';
 import * as path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    viteCompression({
+      //生成压缩包
+      verbose: true,
+      disable: false,
+      threshold: 1024,
+      algorithm: 'gzip',
+      ext: '.gz',
+      // algorithm: 'brotliCompress',
+      // ext: '.br',
+    }),
+    vitePluginImp({
+      libList: [
+        {
+          libName: 'antd',
+          style: (name) => `antd/es/${name}/style/index.less`,
+        },
+      ],
+    }),
+  ],
   css: {
     preprocessorOptions: {
       less: {
         javascriptEnabled: true,
         modifyVars: {
           // 主题修改
-          '@primary-color': '#a652ff', // 全局主色
+          // '@primary-color': '#a652ff', // 全局主色
         },
       },
     },
@@ -29,5 +51,8 @@ export default defineConfig({
       '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@pages': path.resolve(__dirname, 'src/pages'),
     },
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
   },
 });

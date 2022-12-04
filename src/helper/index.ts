@@ -1,4 +1,4 @@
-const pageSize = 1000;
+const pageSize = 20000;
 export function getData(start = 0) {
   const list = [];
   for (let i = start; i < start + pageSize; i++) {

@@ -15,7 +15,7 @@ export default function NotLimitVirtualList() {
   return (
     <>
       {list.length > 0 && (
-        <VirtualScroll list={list} containerHeight={'100vh'}>
+        <VirtualScroll list={list} containerHeight={'100%'}>
           {(item) => (
             <div className='list-item'>
               <p>{item.words}</p>
