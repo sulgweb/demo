@@ -20,6 +20,7 @@ const Barrage = lazy(() => import('@/pages/Barrage'));
 const OrdinaryList = lazy(() => import('@/pages/OrdinaryList'));
 const LimitVirtualList = lazy(() => import('@/pages/LimitVirtualList'));
 const NotLimitVirtualList = lazy(() => import('@/pages/NotLimitVirtualList'));
+const LRU = lazy(()=>import('@/pages/LRU'))
 
 export default function Router() {
   let element = useRoutes([
@@ -76,6 +77,11 @@ export default function Router() {
     {
       path: '/barrage',
       element: <Barrage />,
+      children: [],
+    },
+    {
+      path: '/lru',
+      element: <LRU />,
       children: [],
     },
   ]);

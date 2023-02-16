@@ -34,6 +34,7 @@ export default function CommonMenu() {
     { label: '普通列表', key: '/ordinary-list' },
     { label: '定高虚拟列表', key: '/limit-virtual-list' },
     { label: '不定高虚拟列表', key: '/not-limit-virtual-list' },
+    { label: 'LRU', key: '/lru' },
     /*{
       label: 'AI-LOL防弹弹幕',
       key: '/barrage',
