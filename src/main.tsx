@@ -16,7 +16,7 @@ import CommonMenu from './components/CommonMenu';
 import Router from '@/route';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  <>
     <CommonHeader />
     <BrowserRouter>
       <div className='main-center'>
@@ -28,5 +28,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </div>
       </div>
     </BrowserRouter>
-  </React.StrictMode>,
+  </>,
 );
