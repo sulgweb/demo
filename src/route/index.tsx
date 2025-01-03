@@ -20,7 +20,8 @@ const Barrage = lazy(() => import('@/pages/Barrage'));
 const OrdinaryList = lazy(() => import('@/pages/OrdinaryList'));
 const LimitVirtualList = lazy(() => import('@/pages/LimitVirtualList'));
 const NotLimitVirtualList = lazy(() => import('@/pages/NotLimitVirtualList'));
-const LRU = lazy(()=>import('@/pages/LRU'))
+const LRU = lazy(() => import('@/pages/LRU'));
+const ChunkUpload = lazy(() => import('@/pages/ChunkUpload'));
 
 export default function Router() {
   let element = useRoutes([
@@ -82,6 +83,11 @@ export default function Router() {
     {
       path: '/lru',
       element: <LRU />,
+      children: [],
+    },
+    {
+      path: '/chunk-upload',
+      element: <ChunkUpload />,
       children: [],
     },
   ]);
