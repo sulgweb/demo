@@ -9,6 +9,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteCompression from 'vite-plugin-compression';
 import vitePluginImp from 'vite-plugin-imp';
+import wasm from 'vite-plugin-wasm';
 import * as path from 'path';
 
 // https://vitejs.dev/config/
@@ -33,6 +34,7 @@ export default defineConfig({
         },
       ],
     }),
+    wasm(),
   ],
   css: {
     preprocessorOptions: {

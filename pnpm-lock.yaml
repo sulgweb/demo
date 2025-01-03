@@ -41,9 +41,15 @@ importers:
       react-svg:
         specifier: ^15.1.7
         version: 15.1.21(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      spark-md5:
+        specifier: ^3.0.2
+        version: 3.0.2
       vite-plugin-imp:
         specifier: ^2.3.1
         version: 2.4.0(vite@6.0.6(@types/node@18.19.68)(less@4.2.1))
+      vite-plugin-wasm:
+        specifier: ^3.4.1
+        version: 3.4.1(vite@6.0.6(@types/node@18.19.68)(less@4.2.1))
     devDependencies:
       '@types/node':
         specifier: ^18.0.0
@@ -1466,6 +1472,9 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
 
+  spark-md5@3.0.2:
+    resolution: {integrity: sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==}
+
   sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
 
@@ -1555,6 +1564,11 @@ packages:
     resolution: {integrity: sha512-L/6/nvOw+MyNh4UxAlCZHsmKd5MitmHamqqAWB15sbUgVIEz/OQ8jpKr6kkQU0eA/AIe8fkCVbQBlP81ajrqWg==}
     peerDependencies:
       vite: '>= 2.0.0-beta.5'
+
+  vite-plugin-wasm@3.4.1:
+    resolution: {integrity: sha512-ja3nSo2UCkVeitltJGkS3pfQHAanHv/DqGatdI39ja6McgABlpsZ5hVgl6wuR8Qx5etY3T5qgDQhOWzc5RReZA==}
+    peerDependencies:
+      vite: ^2 || ^3 || ^4 || ^5 || ^6
 
   vite@6.0.6:
     resolution: {integrity: sha512-NSjmUuckPmDU18bHz7QZ+bTYhRR0iA72cs2QAxCqDpafJ0S6qetco0LB3WW2OxlMHS0JmAv+yZ/R3uPmMyGTjQ==}
@@ -3163,6 +3177,8 @@ snapshots:
   source-map@0.6.1:
     optional: true
 
+  spark-md5@3.0.2: {}
+
   sprintf-js@1.0.3: {}
 
   string-convert@0.2.1: {}
@@ -3261,6 +3277,10 @@ snapshots:
       vite: 6.0.6(@types/node@18.19.68)(less@4.2.1)
     transitivePeerDependencies:
       - supports-color
+
+  vite-plugin-wasm@3.4.1(vite@6.0.6(@types/node@18.19.68)(less@4.2.1)):
+    dependencies:
+      vite: 6.0.6(@types/node@18.19.68)(less@4.2.1)
 
   vite@6.0.6(@types/node@18.19.68)(less@4.2.1):
     dependencies:
