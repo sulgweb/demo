@@ -1,6 +1,14 @@
 import SparkMD5 from 'spark-md5';
 export const CHUNK_SIZE = 10 * 1024 * 1024; // 分片大小，10MB
 
+const upload = async (data: FormData) => {
+  const res = await fetch('/api/upload', {
+    method: 'POST',
+    body: data,
+  });
+  return res;
+};
+
 export const chunkUpload = async ({
   file,
   chunkList,
@@ -52,7 +60,9 @@ export const chunkUpload = async ({
       pList.push(handleChunk(chunkData));
     }
     const res = await Promise.all(pList);
-    // console.log(res);
+    for (const item of res) {
+      await upload(item.formData);
+    }
     resolve(true);
   });
 };
