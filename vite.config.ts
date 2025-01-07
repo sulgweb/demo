@@ -8,7 +8,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteCompression from 'vite-plugin-compression';
-import vitePluginImp from 'vite-plugin-imp';
 import wasm from 'vite-plugin-wasm';
 import * as path from 'path';
 
@@ -25,14 +24,6 @@ export default defineConfig({
       ext: '.gz',
       // algorithm: 'brotliCompress',
       // ext: '.br',
-    }),
-    vitePluginImp({
-      libList: [
-        {
-          libName: 'antd',
-          style: (name) => `antd/es/${name}/style/index.less`,
-        },
-      ],
     }),
     wasm(),
   ],
