@@ -36,6 +36,7 @@ export default function CommonMenu() {
     { label: '不定高虚拟列表', key: '/not-limit-virtual-list' },
     { label: 'LRU', key: '/lru' },
     { label: '分片上传', key: '/chunk-upload' },
+    { label: 'ios加载动画', key: '/ios-loading' },
     /*{
       label: 'AI-LOL防弹弹幕',
       key: '/barrage',
