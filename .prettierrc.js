@@ -1,10 +1,4 @@
-/*
- * @Description: 
- * @Author: xianpengfei
- * @LastEditors: xianpengfei
- * @Date: 2022-06-17 16:27:00
- * @LastEditTime: 2022-06-17 16:27:16
- */
+
 module.exports = {
   printWidth: 80, //单行长度
   tabWidth: 2, //缩进长度

@@ -1,5 +1,6 @@
 import SparkMD5 from 'spark-md5';
 export const CHUNK_SIZE = 10 * 1024 * 1024; // 分片大小，10MB
+import * as baizeMd5Wasm from '@/utils/wasm/md5/baize_md5_wasm.js';
 
 const upload = async (data: FormData) => {
   const res = await fetch('/api/upload', {
@@ -20,6 +21,9 @@ export const chunkUpload = async ({
   totalChunk: number;
   type?: 'default' | 'wasm';
 }) => {
+  if (type === 'wasm') {
+    await baizeMd5Wasm.default();
+  }
   async function handleChunk(chunkData: {
     start: number;
     end: number;
@@ -37,8 +41,7 @@ export const chunkUpload = async ({
         formData.append('totalChunks', totalChunk.toString());
         formData.append('chunkIndex', chunkIndex.toString());
         if (type === 'wasm') {
-          const wasmModule = await import('@/utils/wasm/md5/md5_wasm.js');
-          const md5 = wasmModule.calculate_md5(new Uint8Array(arrayBuffer)); // 计算当前分片的 MD5
+          const md5 = baizeMd5Wasm.calculate_md5(new Uint8Array(arrayBuffer)); // 计算当前分片的 MD5
           formData.append('md5', md5); // 传递 MD5
         } else {
           const md5 = SparkMD5.ArrayBuffer.hash(arrayBuffer); // 计算当前分片的 MD5

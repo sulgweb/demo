@@ -1,0 +1,15 @@
+{
+  "name": "baize-md5-wasm",
+  "collaborators": [
+    "xianpengfei <xianpengfei@cvte.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "baize_md5_wasm_bg.wasm",
+    "baize_md5_wasm.js",
+    "baize_md5_wasm.d.ts"
+  ],
+  "module": "baize_md5_wasm.js",
+  "types": "baize_md5_wasm.d.ts",
+  "sideEffects": false
+}
