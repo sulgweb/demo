@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Spin, Select } from 'antd';
+import "./index.less"
 
-const DEFAULT_DURATION = 300;
+const DEFAULT_DURATION = 200;
+const DEFAULT_LOADING_SHOW_TIME = 500;
 
 export default function IosLoading() {
   const [isLoading, setIsLoading] = useState(false);
-  const [startTime, setStartTime] = useState(0);
-  const [duration, setDuration] = useState(200);
+  const [duration, setDuration] = useState(50);
   const [data, setData] = useState(null);
 
   const mockRequest = () => {
@@ -24,11 +25,10 @@ export default function IosLoading() {
     });
   };
 
-  // 模拟请求
+  // 请求
   const fetchData = async () => {
     const start = Date.now();
     setData(null);
-    setStartTime(start);
 
     // 在请求开始后xxx ms开始显示 loading
     const loadingTimer = setTimeout(() => {
@@ -46,23 +46,33 @@ export default function IosLoading() {
         setTimeout(() => {
           setData(res);
           setIsLoading(false);
-        }, 200);
+        }, DEFAULT_LOADING_SHOW_TIME + DEFAULT_DURATION - _duration);
       }
     });
   };
 
+  const defaultfetchData = async () => {
+    setIsLoading(true);
+    mockRequest().then((res) => {
+      setIsLoading(false);
+      setData(res);
+    });
+  }
+
+
   return (
-    <div>
+    <div className='ios-loading'>
       <div>
         <Select
           style={{ marginBottom: 12, width: 120 }}
           value={duration}
           onChange={(value) => {
-            console.log('value', value);
             setDuration(value);
           }}
           options={[
+            { label: '50ms', value: 50 },
             { label: '100ms', value: 100 },
+            { label: '150ms', value: 150 },
             { label: '200ms', value: 200 },
             { label: '500ms', value: 500 },
             { label: '1000ms', value: 1000 },
@@ -71,12 +81,15 @@ export default function IosLoading() {
       </div>
       <div>
         <Button type='primary' onClick={fetchData}>
-          请求
+          延时动画请求
+        </Button>
+        <Button onClick={defaultfetchData}>
+          默认请求
         </Button>
       </div>
 
-      {isLoading && <Spin size='large' />}
-      {data && <div>请求耗时:{data.duration}ms</div>}
+      {isLoading && <div className='loading'><Spin size='large' /></div>}
+      <div>请求耗时:{data?.duration}ms</div>
     </div>
   );
 }
