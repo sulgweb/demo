@@ -81,7 +81,7 @@ export default function IosLoading() {
       </div>
       <div>
         <Button type='primary' onClick={fetchData}>
-          延时动画请求
+          延时loading请求
         </Button>
         <Button onClick={defaultfetchData}>
           默认请求
